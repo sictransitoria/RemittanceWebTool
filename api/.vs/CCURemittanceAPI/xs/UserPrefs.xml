@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{7239C83F-7EB0-4DC1-9B55-0C98BAE0342A}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CCURemittanceAPI/Controllers/CCURemittanceController.cs">
+    <Files>
+      <File FileName="CCURemittanceAPI/Controllers/CCURemittanceController.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="CCURemittanceAPI" expanded="True">
+            <Node name="CCURemittanceAPI" expanded="True">
+              <Node name="Areas" selected="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Helpers" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.CCURemittanceAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

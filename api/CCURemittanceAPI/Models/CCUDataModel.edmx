@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FormViewerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CCURemittanceHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UploadDate" Type="datetime" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CCURemittanceInvoiceInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceNum" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="InvoiceDate" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="VoucherNum" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="VoucherDate" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="WarNum" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="WarDate" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CCURemittanceMemberInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Last" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="First" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ClientID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SSN" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ServiceDate" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BN" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SV" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rate" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Units" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gross" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fee" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Net" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="FormViewerModelStoreContainer">
+          <EntitySet Name="CCURemittanceHistory" EntityType="Self.CCURemittanceHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CCURemittanceInvoiceInfo" EntityType="Self.CCURemittanceInvoiceInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CCURemittanceMemberInfo" EntityType="Self.CCURemittanceMemberInfo" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FormViewerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FormViewerEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CCURemittanceInvoiceInfoes" EntityType="FormViewerModel.CCURemittanceInvoiceInfo" />
+          <EntitySet Name="CCURemittanceHistories" EntityType="FormViewerModel.CCURemittanceHistory" />
+          <EntitySet Name="CCURemittanceMemberInfoes" EntityType="FormViewerModel.CCURemittanceMemberInfo" />
+        </EntityContainer>
+        <EntityType Name="CCURemittanceInvoiceInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceNum" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceDate" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="VoucherNum" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="VoucherDate" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="WarNum" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="WarDate" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CCURemittanceHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CCURemittanceMemberInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Last" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="First" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SSN" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ServiceDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SV" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Rate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Units" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gross" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fee" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Net" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FormViewerModelStoreContainer" CdmEntityContainer="FormViewerEntities1">
+          <EntitySetMapping Name="CCURemittanceInvoiceInfoes">
+            <EntityTypeMapping TypeName="FormViewerModel.CCURemittanceInvoiceInfo">
+              <MappingFragment StoreEntitySet="CCURemittanceInvoiceInfo">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="WarDate" ColumnName="WarDate" />
+                <ScalarProperty Name="WarNum" ColumnName="WarNum" />
+                <ScalarProperty Name="VoucherDate" ColumnName="VoucherDate" />
+                <ScalarProperty Name="VoucherNum" ColumnName="VoucherNum" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="InvoiceNum" ColumnName="InvoiceNum" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CCURemittanceHistories">
+            <EntityTypeMapping TypeName="FormViewerModel.CCURemittanceHistory">
+              <MappingFragment StoreEntitySet="CCURemittanceHistory">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CCURemittanceMemberInfoes">
+            <EntityTypeMapping TypeName="FormViewerModel.CCURemittanceMemberInfo">
+              <MappingFragment StoreEntitySet="CCURemittanceMemberInfo">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Net" ColumnName="Net" />
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
+                <ScalarProperty Name="Gross" ColumnName="Gross" />
+                <ScalarProperty Name="Units" ColumnName="Units" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="SV" ColumnName="SV" />
+                <ScalarProperty Name="BN" ColumnName="BN" />
+                <ScalarProperty Name="ServiceDate" ColumnName="ServiceDate" />
+                <ScalarProperty Name="SSN" ColumnName="SSN" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="First" ColumnName="First" />
+                <ScalarProperty Name="Last" ColumnName="Last" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

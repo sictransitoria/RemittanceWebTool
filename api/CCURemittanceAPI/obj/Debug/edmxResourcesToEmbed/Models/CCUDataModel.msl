@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FormViewerModelStoreContainer" CdmEntityContainer="FormViewerEntities1">
+    <EntitySetMapping Name="CCURemittanceInvoiceInfoes">
+      <EntityTypeMapping TypeName="FormViewerModel.CCURemittanceInvoiceInfo">
+        <MappingFragment StoreEntitySet="CCURemittanceInvoiceInfo">
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="WarDate" ColumnName="WarDate" />
+          <ScalarProperty Name="WarNum" ColumnName="WarNum" />
+          <ScalarProperty Name="VoucherDate" ColumnName="VoucherDate" />
+          <ScalarProperty Name="VoucherNum" ColumnName="VoucherNum" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="InvoiceNum" ColumnName="InvoiceNum" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CCURemittanceHistories">
+      <EntityTypeMapping TypeName="FormViewerModel.CCURemittanceHistory">
+        <MappingFragment StoreEntitySet="CCURemittanceHistory">
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CCURemittanceMemberInfoes">
+      <EntityTypeMapping TypeName="FormViewerModel.CCURemittanceMemberInfo">
+        <MappingFragment StoreEntitySet="CCURemittanceMemberInfo">
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="Net" ColumnName="Net" />
+          <ScalarProperty Name="Fee" ColumnName="Fee" />
+          <ScalarProperty Name="Gross" ColumnName="Gross" />
+          <ScalarProperty Name="Units" ColumnName="Units" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="SV" ColumnName="SV" />
+          <ScalarProperty Name="BN" ColumnName="BN" />
+          <ScalarProperty Name="ServiceDate" ColumnName="ServiceDate" />
+          <ScalarProperty Name="SSN" ColumnName="SSN" />
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="First" ColumnName="First" />
+          <ScalarProperty Name="Last" ColumnName="Last" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

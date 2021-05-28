@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FormViewerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="FormViewerEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CCURemittanceInvoiceInfoes" EntityType="FormViewerModel.CCURemittanceInvoiceInfo" />
+    <EntitySet Name="CCURemittanceHistories" EntityType="FormViewerModel.CCURemittanceHistory" />
+    <EntitySet Name="CCURemittanceMemberInfoes" EntityType="FormViewerModel.CCURemittanceMemberInfo" />
+  </EntityContainer>
+  <EntityType Name="CCURemittanceInvoiceInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceNum" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceDate" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
+    <Property Name="VoucherNum" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
+    <Property Name="VoucherDate" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
+    <Property Name="WarNum" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
+    <Property Name="WarDate" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="FileName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CCURemittanceHistory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FileName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CCURemittanceMemberInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Last" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="First" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ClientID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="SSN" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ServiceDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SV" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Rate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Units" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Gross" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fee" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Net" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FileName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

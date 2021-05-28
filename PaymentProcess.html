@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<meta name="Premier Home Health Care Services, Inc." content="CCU Payment Detail File Processor">
+
+	<title>Premier's CCU Payment Detail File Processor</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+
+	<!-- Google Font (Open Sans)-->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js">
+	</script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+	</script>
+
+	<link href="css/mobiscroll.jquery.min.css" rel="stylesheet" />
+	<script src="js/mobiscroll.jquery.min.js"></script>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+
+	<!-- Microsoft Excel Scripts -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+
+	<!-- DataTables CDN -->
+	<script src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+	<script src="https://nightly.datatables.net/js/jquery.dataTables.min.js"></script>
+
+	<!-- Moment.JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+
+	<script>
+		document.write("<script type='text/javascript' src='js/dataDownload.js?v=" + Date.now() + "'><\/script>");
+	</script>
+	
+	<style>
+		/* GENERAL */
+
+		body {
+			font-family: "Open Sans", sans-serif;
+			height: 100vh;
+			line-height: 1.3;
+		}
+
+		a {
+			color: #92badd;
+			display: inline-block;
+			text-decoration: none;
+			font-weight: 800;
+			text-decoration: none;
+			transition: all 0.3s linear;
+			-webkit-transition: all 0.3s linear;
+			-moz-transition: all 0.3s linear;
+		}
+
+		/* STRUCTURE */
+
+		.wrapper {
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			justify-content: center;
+			width: 100%;
+			min-height: 100%;
+			padding: 20px;
+		}
+
+		#formContent {
+			-webkit-border-radius: 10px 10px 10px 10px;
+			border-radius: 10px 10px 10px 10px;
+			background: #fff;
+			padding: 30px;
+			width: 90%;
+			max-width: 600px;
+			position: relative;
+			padding: 0px;
+			-webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+			box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+			text-align: center;
+		}
+
+		#formFooter {
+			background-color: #f6f6f6;
+			border-top: 1px solid #dce8f1;
+			padding: 25px;
+			text-align: center;
+			-webkit-border-radius: 0 0 10px 10px;
+			border-radius: 0 0 10px 10px;
+		}
+
+		.close {
+			position: absolute;
+			right: -30px;
+			top: 0;
+			z-index: 999;
+			font-size: 2rem;
+			font-weight: normal;
+			color: #fff;
+			opacity: 1;
+		}
+
+		.modal-dialog {
+			max-width: 800px;
+			margin: 30px auto;
+		}
+
+		.modal-body {
+			position: relative;
+			padding: 0px;
+		}
+
+		/* TABS */
+
+		h2.inactive {
+			color: #cccccc;
+		}
+
+		h2.active {
+			color: #0d0d0d;
+			border-bottom: 2px solid #5fbae9;
+		}
+
+		/* FORM TYPOGRAPHY*/
+
+		input[type=button],
+		input[type=submit],
+		input[type=reset] {
+			background-color: #56baed;
+			border: none;
+			color: white;
+			padding: 15px 80px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			text-transform: uppercase;
+			font-size: 13px;
+			-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+			box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+			-webkit-border-radius: 5px 5px 5px 5px;
+			border-radius: 5px 5px 5px 5px;
+			margin: 5px 20px 40px 20px;
+			-webkit-transition: all 0.3s ease-in-out;
+			-moz-transition: all 0.3s ease-in-out;
+			-ms-transition: all 0.3s ease-in-out;
+			-o-transition: all 0.3s ease-in-out;
+			transition: all 0.3s ease-in-out;
+		}
+
+		input[type=button]:hover,
+		input[type=submit]:hover,
+		input[type=reset]:hover {
+			background-color: #39ace7;
+		}
+
+		input[type=button]:active,
+		input[type=submit]:active,
+		input[type=reset]:active {
+			-moz-transform: scale(0.95);
+			-webkit-transform: scale(0.95);
+			-o-transform: scale(0.95);
+			-ms-transform: scale(0.95);
+			transform: scale(0.95);
+		}
+
+		input[type=text] {
+			background-color: #f6f6f6;
+			border: none;
+			color: #0d0d0d;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 5px;
+			width: 85%;
+			border: 2px solid #f6f6f6;
+			-webkit-transition: all 0.5s ease-in-out;
+			-moz-transition: all 0.5s ease-in-out;
+			-ms-transition: all 0.5s ease-in-out;
+			-o-transition: all 0.5s ease-in-out;
+			transition: all 0.5s ease-in-out;
+			-webkit-border-radius: 5px 5px 5px 5px;
+			border-radius: 5px 5px 5px 5px;
+		}
+
+		input[type=text]:focus {
+			background-color: #fff;
+			border-bottom: 2px solid #5fbae9;
+		}
+
+		input[type=text]:placeholder {
+			color: #cccccc;
+		}
+
+        #btnUpload, #getNewBtnUpload {
+            margin: 20px 0px 0px 0px;
+            background-color: #1DB954;
+        }
+
+        #btnUpload:hover,
+		#getNewBtnUpload:hover {
+			background-color: #00b300;
+		}
+
+		/* ANIMATIONS */
+
+		.fadeInDown {
+			-webkit-animation-name: fadeInDown;
+			animation-name: fadeInDown;
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+			-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+		}
+
+		@-webkit-keyframes fadeInDown {
+			0% {
+				opacity: 0;
+				-webkit-transform: translate3d(0, -100%, 0);
+				transform: translate3d(0, -100%, 0);
+			}
+
+			100% {
+				opacity: 1;
+				-webkit-transform: none;
+				transform: none;
+			}
+		}
+
+		@keyframes fadeInDown {
+			0% {
+				opacity: 0;
+				-webkit-transform: translate3d(0, -100%, 0);
+				transform: translate3d(0, -100%, 0);
+			}
+
+			100% {
+				opacity: 1;
+				-webkit-transform: none;
+				transform: none;
+			}
+		}
+
+		@-webkit-keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+
+		@-moz-keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+
+		.fadeIn {
+			opacity: 0;
+			-webkit-animation: fadeIn ease-in 1;
+			-moz-animation: fadeIn ease-in 1;
+			animation: fadeIn ease-in 1;
+
+			-webkit-animation-fill-mode: forwards;
+			-moz-animation-fill-mode: forwards;
+			animation-fill-mode: forwards;
+
+			-webkit-animation-duration: 1s;
+			-moz-animation-duration: 1s;
+			animation-duration: 1s;
+		}
+
+		.fadeIn.first {
+			-webkit-animation-delay: 0.4s;
+			-moz-animation-delay: 0.4s;
+			animation-delay: 0.4s;
+		}
+
+		.fadeIn.second {
+			-webkit-animation-delay: 0.6s;
+			-moz-animation-delay: 0.6s;
+			animation-delay: 0.6s;
+		}
+
+		.fadeIn.third {
+			-webkit-animation-delay: 0.8s;
+			-moz-animation-delay: 0.8s;
+			animation-delay: 0.8s;
+		}
+
+		.fadeIn.fourth {
+			-webkit-animation-delay: 1s;
+			-moz-animation-delay: 1s;
+			animation-delay: 1s;
+		}
+
+		.underlineHover:after {
+			display: block;
+			left: 0;
+			bottom: -10px;
+			width: 0;
+			height: 2px;
+			background-color: #56baed;
+			content: "";
+			transition: width 0.2s;
+		}
+
+		.underlineHover:hover {
+			color: #0d0d0d;
+		}
+
+		.custom-file-label {
+			margin: 0px 50px 0px 50px;
+			text-align: left;
+			font-size: 14px;
+			font-weight: 100;
+		}
+
+		.underlineHover:hover:after {
+			width: 100%;
+		}
+
+		/* OTHERS */
+
+		*:focus {
+			outline: none;
+		}
+
+		.dates {
+			display: flex;
+			justify-content: space-around;
+		}
+
+		#premierLogo {
+			width: 35%;
+			margin: 30px
+		}
+
+		.footer {
+			margin-top: 10px;
+			font-size: 11px;
+		}
+
+		#reportTitle {
+			font-size: 16px;
+		}
+		
+		.logOut {
+			margin: 1px;
+		}
+
+		.adminInstruct {
+			font-size: 12px;
+		}
+
+		.export-buttons {
+			width: 800px;
+			margin: 5px 0px 20px 0px;
+		}
+
+		/* LOADER CSS */
+
+		#loader {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			z-index: 1;
+			width: 150px;
+			height: 150px;
+			margin: -75px 0 0 -75px;
+			border: 16px solid #f3f3f3;
+			border-radius: 50%;
+			border-top: 16px solid #3498db;
+			width: 120px;
+			height: 120px;
+			-webkit-animation: spin 2s linear infinite;
+			animation: spin 2s linear infinite;
+		}
+
+		@-webkit-keyframes spin {
+			0% {
+				-webkit-transform: rotate(0deg);
+			}
+
+			100% {
+				-webkit-transform: rotate(360deg);
+			}
+		}
+
+		@keyframes spin {
+			0% {
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+
+	</style>
+
+	<script type="text/javascript">
+		function getUrlVars() {
+			var vars = [],
+				hash;
+			var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+			for (var i = 0; i < hashes.length; i++) {
+				hash = hashes[i].split('=');
+				vars.push(hash[0]);
+				vars[hash[0]] = hash[1];
+			}
+			return vars;
+		}
+
+		function contactSupport() {
+			alert("If you've noticed an error or you're experiencing issues, please email ITDept@phhc.com or submit a KACE ticket to receive technical support. Thank you.")
+        };
+
+		/// prompt before log out
+		$(function () {
+			$('a .logOut').click(function () {
+				if (confirm('Are you sure you want to logout?')) {
+					localStorage.clear();
+					return true;
+				}
+				return false;
+			});
+		});
+
+
+	$(document).ready(function () {	
+
+		// label when file is selected
+		$('input[type="file"]').change(function(e){
+			var fileName = e.target.files[0].name;
+			$('.custom-file-label').html(fileName);
+		});
+
+		$("#btnUpload").click(function (event) {
+		
+		// validate filetype
+		var fileID = document.getElementById('uploadCCUInvoice');
+			fileName = fileID.value;
+			fileType = fileName.substring(fileName.lastIndexOf('.') + 1);
+
+			if (fileType == "" || fileType == null) {
+				alert('You never selected a file !');
+
+			}
+			else if (!(fileType == 'xlsx' || fileType == 'xls')) {
+				alert('As it turns out, this particular file type is not compatible.');
+
+			}
+			else {
+				//stop submit the form, we will post it manually.
+				event.preventDefault();
+
+				var fileNameAndExt = fileName.split('\\')[2];
+					fileNameOnly = fileNameAndExt.split('.')[0];
+					localStorage.setItem('currentFileName', fileNameOnly);
+
+				// Get form
+				var form = $('#fileUploadForm')[0];
+
+				// Create an FormData object 
+				var data = new FormData(form);
+
+				// If you want to add an extra field for the FormData
+				data.append("CustomField", "This is some extra data, testing");
+
+				// disabled the submit button
+				$("#btnUpload").prop("disabled", true);
+				$('#loader').removeClass('d-none');
+
+				$.ajax({
+					type: "POST",
+					enctype: 'multipart/form-data',
+					url: "https://localhost:44373/api/CCURemittance/PaymentProcessUpload",
+					data: data,
+					processData: false,
+					contentType: false,
+					cache: false,
+					timeout: 100000,
+					success: function (data) {
+						var responseData = JSON.parse(data);
+						$("#loader").addClass("d-none");
+
+						if (responseData.result == "Success") {
+							alert('The payment detail file has successfully been uploaded. Please press OK, and make sure to download a copy before leaving the site.');
+							getReport(fileNameOnly);
+							$('#btnUpload').hide();
+							$('#hrIDOne').addClass('d-none');
+							$('#getNewBtnUpload').removeClass('d-none');
+							$('#hrIDDeux').removeClass('d-none');
+						}
+					},
+					error: function (e) {
+						$("#result").text(e.responseText);
+						alert("ERROR : ", e);
+						console.log("ERROR : ", e);
+						window.location.href = "PaymentProcess.html"
+					}
+				});
+			}
+		});
+	});
+
+	</script>
+
+</head>
+
+<body>
+	<div class="wrapper fadeInDown">
+		<div id="formContent">
+
+			<!-- loader -->
+			<div id="loader" class='d-none'></div>
+
+			<!-- Premier Logo -->
+			<div class="fadeIn first">
+				<img src="premier-logo.png" id="premierLogo" alt="Premier Logo" />
+			</div>
+
+			<!-- Header -->
+			<div class="fadeIn second">
+				<h1 id="reportTitle">
+					Welcome to Premier's CCU Payment Detail File Processor
+				</h1>
+			</div>
+
+			<hr style='width: 50%;'>
+
+			<!-- loader -->
+			<div id="loader" class='d-none'></div>
+
+			<div class='fadeIn third'>
+				<p class="adminInstruct d-none">
+					Please Upload Your Invoice Below.
+				</p>
+
+				<!-- upload ccu remittance data button -->
+				<form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+					<div class="custom-file">
+						<a href="#">
+							<input type="file" class="custom-file-input" id="uploadCCUInvoice" name="ProcessInvoiceTask">
+							<label class="custom-file-label" for="uploadInvoice">Please Select a Payment Detail File...</label>
+							<input type="button" id='btnUpload' class="fadeIn fourth" value="Upload Payment Detail File">
+						</a>
+
+						<!-- upload new ccu remittance data button -->
+						<a href="PaymentProcess.html">
+							<input type="button" id='getNewBtnUpload' class="fadeIn fourth d-none" value="Upload Another Payment Detail File?">
+						</a>
+					</div>
+				</form>
+				<span id="result"></span>
+			</div>
+
+			<!-- show this HR first for style purposes-->
+			<hr id="hrIDOne" class="horizontal-line" style="width: 25%;">
+
+			<!-- show this HR show for style purposes when showing export btns -->
+			<hr id="hrIDDeux" class="horizontal-line d-none" style="width: 25%; margin-top: 35px;">
+
+			<!-- CCU Remittance Report -->
+			<form class='form-inline hidden response' id='ccuRemittanceReport'>
+				<div id="ccuRemittanceFilters" class="displayFilters">
+
+				</div>
+
+				<div id="ccuRemittanceButtons" class="export-buttons"></div>
+
+				<div class="col-lg-12 margin-top-bot-10 widget-container-col ui-sortable d-none">
+					<div class="widget-box tab-color-blue background-blue padding-4" id="Div1">
+						<div class="widget-header">
+							<h6 class="widget-title">
+								<b>CCU Remittance Report</b>
+							</h6>
+						</div>
+
+						<div class="widget-body">
+							<div class="widget-main padding-4" data-size="250">
+								<div class="content table-responsive max-height-250">
+									<table id='ccuRemittanceTable' class="table row-hover recent">
+										<thead>
+											<tr>
+												<th class="width-5" scope="col">Last Name</th>
+												<th class="width-5" scope="col">First Name</th>
+												<th class="width-5" scope="col">ClientID</th>
+												<th class="width-5" scope="col">SSN</th>
+												<th class="width-5" scope="col">Service Date</th>
+												<th class="width-5" scope="col">NET</th>
+												<th class="width-5" scope="col">InvoiceNumber</th>
+												<th class="width-5" scope="col">File Name</th>
+												<th class="width-5" scope="col">Invoice Date</th>
+												<th class="width-5" scope="col">File Total</th>
+											</tr>
+										</thead>
+										<tbody id="ccuReport">
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+
+			<div class='fadeIn fourth'>
+
+				<!-- Forgot Pin Prompt -->
+				<div id="formFooter">
+					<a onclick='contactSupport()' class="underlineHover" href="#">Having Issues?</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<div class="footer">
+			<div class="footer-content">
+				<span class="bigger-120">
+					<span class="blue bolder">Premier Home Health Care Services, Inc.</span>
+					Application &copy; 2021
+				</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- Export Scripts -->
+	<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+
+</body>
+
+</html>
